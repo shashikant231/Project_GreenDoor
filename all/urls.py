@@ -15,18 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from description_api import views
-from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
 
-router = routers.SimpleRouter()
-
-router.register('description',views.description_view,basename='description')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("description/",include("description_api.urls")),
 
 ]
 if settings.DEBUG:
