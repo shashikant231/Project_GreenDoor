@@ -18,9 +18,15 @@ class DescriptionModel(models.Model):
     state = models.CharField(max_length=50,null=False,default='Bihar')
     city = models.CharField(max_length=80,null=False,default='Patna')
 
+    def __str__(self):
+        return self.Plant_Name
+
 
 class UserProfileModel(models.Model):
     user = models.OneToOneField(User,null=False,on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to ='media/')
     bio = models.TextField()	
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.user.username

@@ -12,6 +12,6 @@ router.register("",UserProfileViewSet)
 
 
 urlpatterns = [
-    # path("model/",DescriptionViewSet.as_view({"get": "list"})),
-      path ("",include(router.urls))
+        path("name/",ListUser.as_view()),
+        path ("",include(router.urls)),
     ]

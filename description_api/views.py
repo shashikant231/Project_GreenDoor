@@ -1,9 +1,11 @@
-
-
+from django.http.response import Http404, HttpResponse
 from rest_framework.response import Response
 from rest_framework import viewsets
 from .serializers import DescriptionModelSerializer,UserProfileModelSerializer
 from .models import DescriptionModel,UserProfileModel
+from rest_framework.views import APIView
+from .models import *
+
 
 
 class DescriptionViewSet(viewsets.ModelViewSet):
@@ -25,3 +27,14 @@ class DescriptionViewSet(viewsets.ModelViewSet):
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfileModel.objects.all()
     serializer_class = UserProfileModelSerializer
+
+class ListUser(APIView):
+    def get(self,request):
+        infos = DescriptionModel.objects.all()
+        response = []
+        for info in infos:
+            response.append(info.Plant_Name)
+
+        return Response(data=response)    
+
+
