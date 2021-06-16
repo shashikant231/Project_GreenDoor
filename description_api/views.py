@@ -33,7 +33,8 @@ class ListUser(APIView):
         infos = DescriptionModel.objects.all()
         response = []
         for info in infos:
-            response.append(info.Plant_Name)
+            all_info = {"Plant_Name":info.Plant_Name,"Price":info.price,"first_image":info.first_image.url,"second_image":info.second_image.url,"state":info.state,"city":info.city}
+            response.append(all_info)
 
         return Response(data=response)    
 
