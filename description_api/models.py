@@ -25,7 +25,9 @@ class DescriptionModel(models.Model):
 class UserProfileModel(models.Model):
     user = models.OneToOneField(User,null=False,on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to ='media/')
-    bio = models.TextField()	
+    bio = models.TextField()
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)	
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
