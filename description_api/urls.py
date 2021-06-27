@@ -13,6 +13,7 @@ router.register("",UserProfileViewSet)
 
 urlpatterns = [
         path("name/",ListUser.as_view()),
+        path("youraddress/",AddressView.as_view()),
         path ("",include(router.urls)),
     ]
 
