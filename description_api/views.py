@@ -13,19 +13,7 @@ from .models import *
 
 class DescriptionViewSet(viewsets.ModelViewSet):
     queryset = DescriptionModel.objects.all()
-    serializer_class = DescriptionModelSerializer
-
-# @api_view(['POST',])
-# def description_view(request):
-#     if request.method == 'POST':
-#         serializer = DescriptionModelSerializer(data=request.data)
-#         data = {}
-#         if serializer.is_valid():
-#             serializer.save()
-#             data['response'] = "successfully added a new model"
-#         else:
-#             data = serializer.error()
-#         return Response(data)        
+    serializer_class = DescriptionModelSerializer       
 
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfileModel.objects.all()
@@ -54,6 +42,7 @@ class AddressView(ListAPIView):
         if queryset.exists() is False:
             queryset = DescriptionModel.objects.all()
             queryset = queryset.filter(state = state_name)
+             
 
     # if our_city:
     # queryset = queryset.filter(city="patna")

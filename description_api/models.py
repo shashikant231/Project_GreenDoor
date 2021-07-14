@@ -25,7 +25,7 @@ class DescriptionModel(models.Model):
 
 class UserProfileModel(models.Model):
     user = models.OneToOneField(User,null=False,on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to ='media/')
+    profile_pic = models.ImageField(upload_to ='media/', null=True, blank=True)
     bio = models.TextField()	
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
