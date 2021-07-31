@@ -6,7 +6,7 @@ from rest_framework import routers
 
 router = routers.SimpleRouter()
 router.register("model",DescriptionViewSet)
-router.register("",UserProfileViewSet)
+router.register("profile",UserProfileViewSet)
 
 
 
@@ -14,7 +14,7 @@ router.register("",UserProfileViewSet)
 urlpatterns = [
         path("name/",ListUser.as_view()),
         path("youraddress/",AddressView.as_view()),
-        path ("",include(router.urls)),
-    ]
+        # path("add_favourite/<id>",add_favourite)
+        ] + router.urls
 
     

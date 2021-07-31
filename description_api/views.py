@@ -1,11 +1,11 @@
 from django.db.models.query import QuerySet
-from django.http.response import Http404, HttpResponse
+from django.http.response import Http404, HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework import viewsets
 from .serializers import DescriptionModelSerializer,UserProfileModelSerializer
 from .models import DescriptionModel,UserProfileModel
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, get_object_or_404
 from .models import *
 
 
@@ -31,6 +31,10 @@ class ListUser(APIView):
 
 
 class AddressView(ListAPIView):
+    """
+    you can filter object based on the city or state like:
+    http://127.0.0.1:8000/description/youraddress/?city=Patna
+    """
     serializer_class = DescriptionModelSerializer
     def get_queryset(self):
         queryset = DescriptionModel.objects.all()
@@ -49,6 +53,15 @@ class AddressView(ListAPIView):
             
         return queryset
 
+
+# def add_favourite(request,id):
+#     description = get_object_or_404(DescriptionModel,id=id)
+#     if description.favourite.filter(id=request.user.id).exists():
+#         description.favourite.remove(request.user)
+#     else:
+#         description.favourite.add(request.user)
+
+#     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 

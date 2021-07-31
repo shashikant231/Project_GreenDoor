@@ -10,6 +10,7 @@ class DescriptionModel(models.Model):
     Plant_Name = models.CharField(max_length=100,null=False)
     description = models.CharField(max_length=200, null=True, blank=True)
     price = models.FloatField(null=True)
+    favourite = models.ManyToManyField(User,related_name="favourites",blank=True)
     first_image = models.ImageField(upload_to ='media/')
     second_image = models.ImageField(upload_to ='media/')
     third_image = models.ImageField(upload_to ='media/',null = True)
