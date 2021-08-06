@@ -7,6 +7,11 @@ class DescriptionModelSerializer(serializers.ModelSerializer):
         model = DescriptionModel
         fields = '__all__'
 
+    def to_representation(self, instance):
+        res = super().to_representation(instance)
+        res['user'] = instance.user.username
+        return res
+
 class UserProfileModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfileModel

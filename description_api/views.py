@@ -1,10 +1,7 @@
-from django.db.models.query import QuerySet
-from django.http.response import Http404, HttpResponse, HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework import viewsets
 from .serializers import DescriptionModelSerializer,UserProfileModelSerializer
 from .models import DescriptionModel,UserProfileModel
-from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView, get_object_or_404
 from .models import *
 
@@ -12,22 +9,58 @@ from .models import *
 
 
 class DescriptionViewSet(viewsets.ModelViewSet):
-    queryset = DescriptionModel.objects.all()
-    serializer_class = DescriptionModelSerializer       
+    """
+    Create New Description 
 
+        Requeat Data : {
+            "Plant_Name" : "name",
+            "description" : "description",
+            "price" : "price",
+            "first_image" : "first_image",
+            "second_image" : "second_image",
+            "third_image" : "third_image",
+            "fourth_image" : "fourth_image",
+            "fifth_image" : "fifth_image",
+            "state" : "state",
+            "city" : "city",
+            "user" : "user",
+            "favourite" : "favourite"
+        }
+
+        Response : {
+        "id": 8,
+        "Plant_Name": "plant name",
+        "description": "description for the plant",
+        "price": price,
+        "first_image": "image",
+        "second_image": "image",
+        "third_image": null,
+        "fourth_image": null,
+        "fifth_image": null,
+        "state": "state",
+        "city": "city",
+        "user": "username",
+        "favourite": []
+    }
+    """
+    queryset = DescriptionModel.objects.all()
+    serializer_class = DescriptionModelSerializer  
+
+        
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfileModel.objects.all()
     serializer_class = UserProfileModelSerializer
 
-class ListUser(APIView):
-    def get(self,request):
-        infos = DescriptionModel.objects.all()
-        response = []
-        for info in infos:
-            all_info = {"Plant_Name":info.Plant_Name,"Price":info.price,"first_image":info.first_image.url,"second_image":info.second_image.url,"state":info.state,"city":info.city}
-            response.append(all_info)
 
-        return Response(data=response)    
+# class ListUser(APIView):
+#     def get(self,request):
+#         infos = DescriptionModel.objects.all()
+#         response = []
+#         for info in infos:
+#             all_info = {"Plant_Name":info.Plant_Name,"Price":info.price,"first_image":info.first_image.url,"second_image":info.second_image.url,"state":info.state,"city":info.city}
+#             response.append(all_info)
+
+#         return Response(data=response)    
 
 
 class AddressView(ListAPIView):
@@ -46,10 +79,6 @@ class AddressView(ListAPIView):
         if queryset.exists() is False:
             queryset = DescriptionModel.objects.all()
             queryset = queryset.filter(state = state_name)
-             
-
-    # if our_city:
-    # queryset = queryset.filter(city="patna")
             
         return queryset
 
