@@ -29,5 +29,6 @@ http://127.0.0.1:8000/description/youraddress/ (to get the filtered object based
 http://127.0.0.1:8000/auth/login/  (for login)
 http://127.0.0.1:8000/auth/logout/  (for logout)
 http://127.0.0.1:8000/auth/registration/  (for registration )
-http://127.0.0.1:8000/description/allusers/ (to get user object as response)
+http://127.0.0.1:8000/auth/user/ (to get logined user object)
+http://127.0.0.1:8000/description/allusers/ (to get list of user objects as response)
 http://127.0.0.1:8000/auth/password/change/ (to change password )
