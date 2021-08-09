@@ -148,10 +148,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ),
 }
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'description_api-auth'
 
 CORS_ALLOW_ALL_ORIGINS=True
 
