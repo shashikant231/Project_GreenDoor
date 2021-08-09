@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class DescriptionModel(models.Model):
     user = models.ForeignKey(User, null=False, on_delete= models.CASCADE)
-    Plant_Name = models.CharField(max_length=100,null=False)
+    plant_name = models.CharField(max_length=100,null=False)
     description = models.CharField(max_length=200, null=True, blank=True)
     price = models.FloatField(null=True)
     favourite = models.ManyToManyField(User,related_name="favourites",blank=True)
