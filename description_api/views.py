@@ -4,6 +4,7 @@ from .serializers import DescriptionModelSerializer,UserProfileModelSerializer
 from .models import DescriptionModel,UserProfileModel
 from rest_framework.generics import ListAPIView, get_object_or_404
 from .models import *
+from rest_framework.views import APIView
 
 
 
@@ -52,15 +53,15 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     serializer_class = UserProfileModelSerializer
 
 
-# class ListUser(APIView):
-#     def get(self,request):
-#         infos = DescriptionModel.objects.all()
-#         response = []
-#         for info in infos:
-#             all_info = {"Plant_Name":info.Plant_Name,"Price":info.price,"first_image":info.first_image.url,"second_image":info.second_image.url,"state":info.state,"city":info.city}
-#             response.append(all_info)
+class ListUser(APIView):
+    def get(self,request):
+        infos = User.objects.all()
+        response = []
+        for info in infos:
+            all_info = {"username":info.username,"email":info.email,"user_id":info.id}
+            response.append(all_info)
 
-#         return Response(data=response)    
+        return Response(data=response)    
 
 
 class AddressView(ListAPIView):

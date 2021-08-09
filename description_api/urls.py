@@ -13,6 +13,7 @@ router.register("profile",UserProfileViewSet)
 
 urlpatterns = [
         path("youraddress/",AddressView.as_view()),
+        path("allusers/",ListUser.as_view()),
         # path("add_favourite/<id>",add_favourite)
         ] + router.urls
 
