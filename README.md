@@ -1,4 +1,11 @@
 # Project_GreenDoor
+```
+Greendoor-Buying/Selling platform for hobby gardners:
+
+An online platform for gardners,built using Django REST
+API,PostgreSQL Database,Amazon S3,Django-rest-auth and more.
+
+```
 
 ## Quick Start
 ```
