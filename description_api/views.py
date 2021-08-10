@@ -2,9 +2,10 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from .serializers import DescriptionModelSerializer,UserProfileModelSerializer
 from .models import DescriptionModel,UserProfileModel
-from rest_framework.generics import ListAPIView, get_object_or_404
+from rest_framework.generics import ListAPIView
 from .models import *
 from rest_framework.views import APIView
+from rest_framework import filters
 
 
 
@@ -14,7 +15,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
     Create New Description 
 
         Requeat Data : {
-            "Plant_Name" : "name",
+            "plant_name" : "name",
             "description" : "description",
             "price" : "price",
             "first_image" : "first_image",
@@ -30,7 +31,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
 
         Response : {
         "id": 8,
-        "Plant_Name": "plant name",
+        "plant_name": "plant name",
         "description": "description for the plant",
         "price": price,
         "first_image": "image",
@@ -45,7 +46,9 @@ class DescriptionViewSet(viewsets.ModelViewSet):
     }
     """
     queryset = DescriptionModel.objects.all()
-    serializer_class = DescriptionModelSerializer  
+    serializer_class = DescriptionModelSerializer 
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['plant_name'] 
 
         
 class UserProfileViewSet(viewsets.ModelViewSet):
