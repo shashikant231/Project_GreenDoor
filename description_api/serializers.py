@@ -9,7 +9,7 @@ class DescriptionModelSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res['user'] = instance.user.username
+        res['username'] = instance.user.username
         return res
 
 class UserProfileModelSerializer(serializers.ModelSerializer):

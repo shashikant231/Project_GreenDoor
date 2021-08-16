@@ -50,7 +50,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
     queryset = DescriptionModel.objects.all()
     serializer_class = DescriptionModelSerializer 
     filter_backends = [filters.SearchFilter]
-    search_fields = ['plant_name'] 
+    search_fields = ['plant_name','user__username'] 
 
         
 class UserProfileViewSet(viewsets.ModelViewSet):
