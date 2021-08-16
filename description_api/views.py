@@ -6,6 +6,8 @@ from rest_framework.generics import ListAPIView
 from .models import *
 from rest_framework.views import APIView
 from rest_framework import filters
+from rest_framework import filters
+
 
 
 
@@ -54,6 +56,8 @@ class DescriptionViewSet(viewsets.ModelViewSet):
 class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = UserProfileModel.objects.all()
     serializer_class = UserProfileModelSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user__id',]
 
 
 class ListUser(APIView):
