@@ -6,7 +6,7 @@ from rest_framework.generics import ListAPIView
 from .models import *
 from rest_framework.views import APIView
 from rest_framework import filters
-from rest_framework import filters
+from rest_framework.pagination import PageNumberPagination
 
 
 
@@ -51,6 +51,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
     serializer_class = DescriptionModelSerializer 
     filter_backends = [filters.SearchFilter]
     search_fields = ['plant_name','user__username'] 
+    pagination_class = PageNumberPagination
 
         
 class UserProfileViewSet(viewsets.ModelViewSet):
