@@ -50,7 +50,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
     queryset = DescriptionModel.objects.all()
     serializer_class = DescriptionModelSerializer 
     filter_backends = [filters.SearchFilter]
-    search_fields = ['plant_name','user__username'] 
+    search_fields = ['plant_name','user__id'] 
     pagination_class = PageNumberPagination
 
         
