@@ -1,4 +1,3 @@
-from django.db.models import fields
 from .models import DescriptionModel,UserProfileModel
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -9,6 +8,7 @@ class DescriptionModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = DescriptionModel
         fields = '__all__'
+    
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
@@ -16,6 +16,8 @@ class DescriptionModelSerializer(serializers.ModelSerializer):
         res['username'] = instance.user.username
         res['image'] = image
         return res
+
+ 
 
 class UserProfileModelSerializer(serializers.ModelSerializer):
     class Meta:

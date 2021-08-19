@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
-
 class DescriptionModel(models.Model):
     user = models.ForeignKey(User, null=False, on_delete= models.CASCADE)
     plant_name = models.CharField(max_length=100,null=False, help_text=_("Capital first letter,Like Rose"))
@@ -18,11 +17,12 @@ class DescriptionModel(models.Model):
     fourth_image = models.ImageField(upload_to ='media/',null = True)
     fifth_image = models.ImageField(upload_to ='media/',null = True)
     #location
-    state = models.CharField(max_length=50,null=False,default='Bihar')
-    city = models.CharField(max_length=80,null=False,default='Patna')
+    state = models.CharField(max_length=50,null=False)
+    city = models.CharField(max_length=80,null=False)
 
     def __str__(self):
         return self.plant_name
+
 
 
 class UserProfileModel(models.Model):

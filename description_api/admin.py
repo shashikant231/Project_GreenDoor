@@ -10,3 +10,4 @@ class Filter(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(DescriptionModel,Filter)
 admin.site.register(UserProfileModel)
+

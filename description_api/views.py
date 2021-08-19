@@ -16,7 +16,7 @@ class DescriptionViewSet(viewsets.ModelViewSet):
     """
     Create New Description 
 
-        Requeat Data : {
+        Request Data : {
             "plant_name" : "name",
             "description" : "description",
             "price" : "price",
@@ -55,6 +55,27 @@ class DescriptionViewSet(viewsets.ModelViewSet):
 
         
 class UserProfileViewSet(viewsets.ModelViewSet):
+    """
+    create profile
+
+    Request Data : {
+        "user" : "user",
+        "profile_pic" : "your image",
+        "bio" : "your bio",
+        "date_created" : "date_created"
+    }
+    
+    Response : {
+            "id": "profile id" ,
+            "profile_pic": "image.png",
+            "bio": "user bio",
+            "date_created": "2021-05-29T05:25:13.548052Z",
+            "user": "user id,
+            "email": "email",
+            "username": "username"
+        }
+
+    """
     queryset = UserProfileModel.objects.all()
     serializer_class = UserProfileModelSerializer
     filter_backends = [filters.SearchFilter]
