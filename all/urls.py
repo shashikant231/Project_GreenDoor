@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from dj_rest_auth.views import PasswordResetConfirmView
+
 
 
 
@@ -26,6 +28,10 @@ urlpatterns = [
     path("description/",include("description_api.urls")),
     #Django rest-auth urls
     path("auth/", include('dj_rest_auth.urls')),
+    path(
+        'auth/password/reset/confirm/<slug:uidb64>/<slug:token>/',
+        PasswordResetConfirmView.as_view(), name='password_reset_confirm'
+    ),
     path('auth/registration/', include('dj_rest_auth.registration.urls'))
 
 ]
