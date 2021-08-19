@@ -13,8 +13,13 @@ class DescriptionModelSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         res = super().to_representation(instance)
         image = UserProfileModel.objects.filter(user = instance.user.id).values('profile_pic')
+        bio = UserProfileModel.objects.filter(user = instance.user.id).values('bio')
+        email = User.objects.filter(username = instance.user.username).values('email')
         res['username'] = instance.user.username
-        res['image'] = image
+        res['profile_pic'] = image[0]['profile_pic']
+        res['user_email'] = email[0]['email']
+        res['user_bio'] = bio[0]['bio']
+        
         return res
 
  
