@@ -33,3 +33,8 @@ class UserProfileModel(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Bookmark(models.Model):
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    description_id = models.ForeignKey(DescriptionModel,on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)

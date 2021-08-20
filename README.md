@@ -25,6 +25,9 @@ http://127.0.0.1:8000/description/profile/    (for user profile)
 http://127.0.0.1:8000/description/model/ ([Post Request]To add new description )
 http://127.0.0.1:8000/description/model/ ([Get request]to get all the description model objects)
 http://127.0.0.1:8000/description/youraddress/ (to get the filtered object based on the city or state)
+#Bookmark
+http://127.0.0.1:8888/description/bookmark/ (for adding and removing favorites)[Post Request]
+http://127.0.0.1:8888/description/bookmark/?search=1(for searching favourites based on user id)
 
 http://127.0.0.1:8000/auth/login/  (for login)
 http://127.0.0.1:8000/auth/logout/  (for logout)

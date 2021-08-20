@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import DescriptionModel,UserProfileModel
+from .models import DescriptionModel,UserProfileModel,Bookmark
 
 class Filter(admin.ModelAdmin):
     list_display = ("plant_name","price")
@@ -10,4 +10,6 @@ class Filter(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(DescriptionModel,Filter)
 admin.site.register(UserProfileModel)
+admin.site.register(Bookmark)
+
 
