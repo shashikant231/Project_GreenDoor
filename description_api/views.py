@@ -1,7 +1,8 @@
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework import viewsets
-from .serializers import DescriptionModelSerializer,UserProfileModelSerializer
-from .models import DescriptionModel,UserProfileModel
+from .serializers import DescriptionModelSerializer,UserProfileModelSerializer,BookmarkModelSerializer
+from .models import DescriptionModel,UserProfileModel,Bookmark
 from rest_framework.generics import ListAPIView
 from .models import *
 from rest_framework.views import APIView
@@ -111,6 +112,24 @@ class AddressView(ListAPIView):
             queryset = queryset.filter(state = state_name)
             
         return queryset
+
+
+class BookmarkViewSet(viewsets.ModelViewSet):
+    queryset = Bookmark.objects.all()
+    serializer_class = BookmarkModelSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['user_id__id',]
+
+    def create(self, request, *args, **kwargs):
+        u_id = request.data.get('user_id')
+        des_id  = request.data.get('description_id')
+        if Bookmark.objects.filter(user_id = u_id,description_id= des_id).exists():
+            Bookmark.objects.filter(user_id = u_id,description_id= des_id).delete()
+            return Response({'detail': 'User removed from post'}, status=status.HTTP_204_NO_CONTENT)
+        else:
+            return super().create(request, *args, **kwargs)
+        
+
 
 
 # def add_favourite(request,id):
