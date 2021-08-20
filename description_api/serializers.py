@@ -15,7 +15,7 @@ class DescriptionModelSerializer(serializers.ModelSerializer):
         bio = UserProfileModel.objects.filter(user = instance.user.id).values('bio')
         email = User.objects.filter(username = instance.user.username).values('email')
         res['username'] = instance.user.username
-        res['profile_pic'] = image[0]['profile_pic']
+        res['profile_pic'] = "http://127.0.0.1:8888/media/" + image[0]['profile_pic']
         res['user_email'] = email[0]['email']
         res['user_bio'] = bio[0]['bio']
         
@@ -44,7 +44,8 @@ class BookmarkModelSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         res = super().to_representation(instance)
         image = DescriptionModel.objects.filter(id = instance.description_id.id).values('first_image')
-        res['first_image'] = image[0]['first_image']
+        res['plant_name'] = instance.description_id.plant_name
+        res['first_image'] = "http://127.0.0.1:8888/media/" + image[0]['first_image']
         res['price'] = instance.description_id.price
         res['city'] = instance.description_id.city
         res['state'] = instance.description_id.state
