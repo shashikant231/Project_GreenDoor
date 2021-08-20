@@ -40,3 +40,11 @@ class BookmarkModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookmark
         fields = '__all__' 
+
+    def to_representation(self, instance):
+        res = super().to_representation(instance)
+        res['first_image'] = instance.description_id.first_image
+        res['price'] = instance.description_id.price
+        res['city'] = instance.description_id.city
+        res['state'] = instance.description_id.state
+        return res 

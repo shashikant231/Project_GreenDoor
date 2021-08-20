@@ -128,6 +128,8 @@ class BookmarkViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'User removed from post'}, status=status.HTTP_204_NO_CONTENT)
         else:
             return super().create(request, *args, **kwargs)
+
+
         
 
 
