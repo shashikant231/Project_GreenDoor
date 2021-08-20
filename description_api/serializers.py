@@ -1,8 +1,7 @@
-from .models import DescriptionModel,UserProfileModel
+from .models import DescriptionModel,UserProfileModel,Bookmark
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from .models import UserProfileModel
 
 class DescriptionModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,3 +34,9 @@ class UserProfileModelSerializer(serializers.ModelSerializer):
         res['email'] = email[0]['email']
         res['username'] = instance.user.username
         return res      
+
+
+class BookmarkModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bookmark
+        fields = '__all__' 
