@@ -43,7 +43,8 @@ class BookmarkModelSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res['first_image'] = instance.description_id.first_image
+        image = DescriptionModel.objects.filter(id = instance.description_id.id).values('first_image')
+        res['first_image'] = image[0]['first_image']
         res['price'] = instance.description_id.price
         res['city'] = instance.description_id.city
         res['state'] = instance.description_id.state
